@@ -4,7 +4,7 @@
 echo "#############################################################################################"
 echo "Installing Packages."
 echo "#############################################################################################"
-sudo yum install wget unzip httpd -y
+sudo yum install wget unzip httpd -y 
 echo
 
 # Start & Enable Service
@@ -20,20 +20,20 @@ echo
 echo "#############################################################################################"
 echo "Starting Artifact Deployment"
 echo "#############################################################################################"
-mkdir -p/tmp/webfiles
+mkdir -p /tmp/webfiles
 cd /tmp/webfiles
 echo
  
-wget https://www.tooplate.com/zip-templates/2146_nexus_brew.zip
+sudo wget https://www.tooplate.com/zip-templates/2146_nexus_brew.zip
 unzip 2146_nexus_brew.zip
-cp -r 2146_nexus_brew.zip/* /var/www/html/
+sudo cp -r 2146_nexus_brew/* /var/www/html/
 echo
 
 # Bounce Service
 echo "#############################################################################################"
 echo "Restarting Httpd Service"
 echo "#############################################################################################"
-systemctl restart httpd
+sudo systemctl restart httpd
 echo
 
 #Clean Up
@@ -42,3 +42,7 @@ echo "Removing Temporary Files"
 echo "#############################################################################################"
 rm -rf /tmp/webfiles
 echo
+
+sudo systemctl status httpd
+ls -l /var/www/html/
+
